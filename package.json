@@ -1,0 +1,38 @@
+{
+  "name": "danveem.web",
+  "version": "0.9.0",
+  "description": "The virtual announcement board web application",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akilaadi/danveem.web.git"
+  },
+  "keywords": [
+    "virtual",
+    "announcement",
+    "board"
+  ],
+  "author": "Akila Adikari",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/akilaadi/danveem.web/issues"
+  },
+  "homepage": "https://github.com/akilaadi/danveem.web#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.15.3",
+    "express-handlebars": "^3.0.0",
+    "google-auth-library": "^0.10.0",
+    "jquery": "^3.2.1",
+    "morgan": "^1.8.2",
+    "serve-favicon": "^2.4.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
