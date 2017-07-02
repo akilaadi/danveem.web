@@ -1,0 +1,38 @@
+<html>
+{{>head}}
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                {{{ body }}}
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    function onLoad(){
+      gapi.signin2.render('google-link', {
+        'scope': 'profile email',
+        'width': 240,
+        'height': 50,
+        'longtitle': true,
+        'theme': 'dark',
+        'onsuccess': onSignIn,
+        'onfailure': onFailure
+      });
+    }; 
+
+    function onSignIn(googleUser) {
+        var profile = googleUser.getBasicProfile();
+        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+        console.log('Name: ' + profile.getName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+        window.location = '/login/'+googleUser.getAuthResponse().id_token;
+    }
+
+    function onFailure(error) {
+      console.log(error);
+    }
+</script>
+<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
