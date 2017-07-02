@@ -18,7 +18,7 @@ port = process.env.PORT || 4000
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 
-app.engine('.hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }));
+app.engine('.hbs', exphbs({ defaultLayout: 'main', extname: '.hbs'}));
 app.set('view engine', '.hbs');
 
 // uncomment after placing your favicon in /public
@@ -42,6 +42,10 @@ app.use(session({
     saveUninitialized:false,
     resave:false
 }));
+app.use(function(req, res, next) {
+    res.locals.userFname = req.session.userFname;
+    next();
+});
 
 var routes = require('./routes');
 routes(app);
