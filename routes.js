@@ -14,6 +14,7 @@ var checkSignedIn = function (req, res,next) {
 }
 
 module.exports = function (app) {
+    app.use('/', index);
     app.use('/index', index);
     app.use('/signin', signin);
     app.use('/signout', signout);   
