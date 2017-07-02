@@ -37,13 +37,11 @@ app.use(session({
                 region: 'ap-southeast-1'
             }
         }
-    ), secret: 'keyboard cat'
+    ), 
+    secret: 'keyboard cat',
+    saveUninitialized:false,
+    resave:false
 }));
-
-app.use(function (req, res, next) {
-    console.log("A request for things received at " + Date.now());
-    next();
-});
 
 var routes = require('./routes');
 routes(app);
