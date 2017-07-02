@@ -7,31 +7,46 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var exphbs = require('express-handlebars');
+var session = require('express-session');
+var DynamoDBStore = require('connect-dynamodb')({ session: session });
+var env = require('node-env-file');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
-var login = require('./routes/login');
-var home = require('./routes/home');
+env(__dirname + '/.env');
+
 var app = express();
 port = process.env.PORT || 4000
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 
-app.engine('.hbs', exphbs({defaultLayout: 'main', extname: '.hbs'}));
+app.engine('.hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }));
 app.set('view engine', '.hbs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 //app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+    store: new DynamoDBStore(
+        {
+            AWSConfigJSON: {
+                accessKeyId: process.env.AWSAccessKeyId,
+                secretAccessKey: process.env.AWSSecretKey,
+                region: 'ap-southeast-1'
+            }
+        }
+    ), secret: 'keyboard cat'
+}));
 
-app.use('/', routes);
-app.use('/users', users);
-app.use('/login', login);
-app.use('/home', home);
+app.use(function (req, res, next) {
+    console.log("A request for things received at " + Date.now());
+    next();
+});
+
+var routes = require('./routes');
+routes(app);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     var err = new Error('Not Found');

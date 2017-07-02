@@ -24,12 +24,15 @@
   "homepage": "https://github.com/akilaadi/danveem.web#readme",
   "dependencies": {
     "body-parser": "^1.17.2",
+    "connect-dynamodb": "^1.0.11",
     "cookie-parser": "^1.4.3",
     "express": "^4.15.3",
     "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.3",
     "google-auth-library": "^0.10.0",
     "jquery": "^3.2.1",
     "morgan": "^1.8.2",
+    "node-env-file": "^0.1.8",
     "serve-favicon": "^2.4.3"
   },
   "devDependencies": {
