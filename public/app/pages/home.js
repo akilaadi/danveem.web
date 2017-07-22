@@ -21,13 +21,11 @@ app.controller('HomeController', ["$scope", "$window", "$timeout", '$http',
           name: $window.sessionData.name,
           email: $window.sessionData.email
         }).then(function (response) {
-          console.log(response);
+          $http.get($window.sessionData.serviceUrl + '/boards/user/' + $window.sessionData.userid)
+            .then(function (response) {
+              $scope.allBoards = response.data;
+            });
         });
       }
     });
-
-    $http.get($window.sessionData.serviceUrl + '/boards/user/' + $window.sessionData.userid)
-      .then(function (response) {
-        $scope.allBoards = response.data;
-      });
   }]);
