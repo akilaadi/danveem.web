@@ -1,15 +1,25 @@
 <html>
 {{>head}}
+
 <body>
-    <div class="container">
-        <div class="row">
-            <div>Hi {{userFname}}!!</div>
-            <a href="#" onclick="signOut();" id="lnkSignOut">Sign out</a>
-            <div class="col-md-12 text-center">
-                {{{ body }}}
-            </div>
+    <div class="container" ng-app="DanveemModule">
+        <div>
+            <div style="float:left;">Hi {{userFname}}!!</div>
+            <div style="float:right;"><a href="#" onclick="signOut();" id="lnkSignOut">Sign out</a></div>
+            <div style="clear:both;"></div>
+        </div>
+        <div>
+            {{{ body }}}
         </div>
     </div>
+    <script>
+        var sessionData = {
+            userid:'{{userid}}',
+            serviceUrl:'{{apiServiceUrl}}',
+            email:'{{email}}',
+            name:'{{name}}'
+        };
+    </script>
 </body>
 <script>
     function signOut() {
@@ -17,11 +27,13 @@
         auth2.signOut().then(function () {
             window.location = '/signout';
         });
-    }   
+    }
     function onLoad() {
         gapi.load('auth2', function () {
             gapi.auth2.init();
         });
     }
+
 </script>
+
 </html>

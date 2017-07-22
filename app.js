@@ -18,7 +18,7 @@ port = process.env.PORT || 4000
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 
-app.engine('.hbs', exphbs({ defaultLayout: 'main', extname: '.hbs'}));
+app.engine('.hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }));
 app.set('view engine', '.hbs');
 
 // uncomment after placing your favicon in /public
@@ -34,16 +34,20 @@ app.use(session({
             AWSConfigJSON: {
                 accessKeyId: process.env.AWS_ACCESS_KEY_ID,
                 secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-                region: 'ap-southeast-1'
+                region: process.env.AWS_REGION
             }
         }
-    ), 
+    ),
     secret: 'keyboard cat',
-    saveUninitialized:false,
-    resave:false
+    saveUninitialized: false,
+    resave: false
 }));
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     res.locals.userFname = req.session.userFname;
+    res.locals.userid = req.session.userid;
+    res.locals.email = req.session.email;
+    res.locals.name = req.session.name;
+    res.locals.apiServiceUrl = process.env.API_SERVICE_URL;
     next();
 });
 

@@ -12,6 +12,9 @@ router.get('/:id_token', function (req, res) {
             var sess = req.session;
             sess.userid = payload['sub'];
             sess.userFname = payload['given_name'];
+            sess.name = payload['name'];
+            sess.email = payload['email']; 
+            console.log(payload);
             res.redirect('/home');
         },
         function (error) {
