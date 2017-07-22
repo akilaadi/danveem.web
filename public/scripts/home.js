@@ -1,13 +1,16 @@
 app.controller('HomeController', ["$scope", "$window", "$timeout", '$http',
   function ($scope, $window, $timeout, $http) {
-    
+
     $scope.createNewBoard = function (windowApi) {
       windowApi.close();
       $http.post($window.sessionData.serviceUrl + '/boards', {
         adminUserId: parseInt($window.sessionData.userid),
         title: $('#txtBoardTitle').val()
       }).then(function (response) {
-        console.log(response);
+        $http.get($window.sessionData.serviceUrl + '/boards/user/' + $window.sessionData.userid)
+          .then(function (response) {
+            $scope.allBoards = response.data;
+          });
       });
     };
 
@@ -22,4 +25,9 @@ app.controller('HomeController', ["$scope", "$window", "$timeout", '$http',
         });
       }
     });
+
+    $http.get($window.sessionData.serviceUrl + '/boards/user/' + $window.sessionData.userid)
+      .then(function (response) {
+        $scope.allBoards = response.data;
+      });
   }]);

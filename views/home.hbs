@@ -10,24 +10,10 @@
     </div>
     <div style="height:10px;"></div>
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3" ng-repeat="d in allBoards">
             <a href="#" class="thumbnail">
                 <img src="..." alt="...">
-            </a>
-        </div>
-        <div class="col-md-3">
-            <a href="#" class="thumbnail">
-                <img src="..." alt="...">
-            </a>
-        </div>
-        <div class="col-md-3">
-            <a href="#" class="thumbnail">
-                <img src="..." alt="...">
-            </a>
-        </div>
-        <div class="col-md-3">
-            <a href="#" class="thumbnail">
-                <img src="..." alt="...">   
+                <lable>{{d.title}}</lable>
             </a>
         </div>
     </div>
