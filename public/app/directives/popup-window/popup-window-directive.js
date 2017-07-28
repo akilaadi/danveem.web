@@ -35,6 +35,6 @@
                 }
             };
         },
-        templateUrl: '../scripts/directives/popup-window/popup-window-template.html'
+        templateUrl: '../app/directives/popup-window/popup-window-template.html'
     };
 });

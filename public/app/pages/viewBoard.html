@@ -1,0 +1,17 @@
+<link rel="stylesheet" href="/styles/editBoard.css"></link>
+<div class="row">
+    <div class="col-md-12">
+        <div class="board-preview">
+            <h4 class="title">{{board.Title}}</h4>
+            <div class="col-md-12" ng-repeat="n in allNotices">
+                <div class="col-md-1"></div>
+                <div class="col-md-10 paper-box">
+                    <div><b>{{n.Title}}</b></div>
+                    <div ng-bind-html="$sce.trustAsHtml(n.Content)"></div>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<a href="#!/" style="float:right;">Back</a>

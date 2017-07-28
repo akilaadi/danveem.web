@@ -1,0 +1,37 @@
+<link rel="stylesheet" href="/styles/editBoard.css"></link>
+<div class="row">
+    <div class="col-md-6">
+        <div class="board-preview">
+            <h4 class="title">{{board.Title}}</h4>
+            <div class="col-md-12" ng-repeat="n in allNotices">
+                <div class="col-md-1"></div>
+                <div class="col-md-10 paper-box">
+                    <div><b>{{n.Title}}</b></div>
+                    <div ng-bind-html="$sce.trustAsHtml(n.Content)"></div>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon2">Title</span>
+            <input id="txtNoticeTitle" type="text" class="form-control" placeholder="Enter title here" aria-describedby="basic-addon2"
+                ng-model="newNoticeTitle.text">
+        </div>
+        <div style="height:10px;"></div>
+        <textarea id="mytextarea"></textarea>
+        <div style="height:10px;"></div>
+        <a href="#!/" class="btn btn-default" style="float:right;">Back</a>
+        <button style="float:right;margin-right:5px;" type="button" class="btn btn-default" ng-click="addNotice()">Add Notice</button>
+        <div style="clear:both;height:20px;"></div>
+        <div class="input-group col-md-12">
+            <span class="input-group-addon" id="basic-addon3">Share With</span>
+            <input id="txtShareWithEmail" type="text" class="form-control" placeholder="Enter email here" aria-describedby="basic-addon3"
+                ng-model="shareWithEmail.text">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button" ng-click="shareBoard()">Share</button>
+            </span>
+        </div>
+    </div>
+</div>

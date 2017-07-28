@@ -1,7 +1,11 @@
-<link rel="stylesheet" href="/styles/home.css"></link>
+<script src="/app/app.js"></script>
 <script src="/app/directives/popup-window/popup-window-directive.js"></script>
-<script src="/app/home.js"></script>
 <script src="/app/resources/userResource.js"></script>
-<div ng-controller="HomeController">
-    <ng-include src="'../app/pages/home.html'"></ng-include>
+<script src="/app/resources/boardResource.js"></script>
+<script src="/app/resources/noticesResource.js"></script>
+<script src="/app/pages/homeController.js"></script>
+<script src="/app/pages/editBoardController.js"></script>    
+<script src="/app/pages/viewBoardController.js"></script>    
+<div ng-app="DanveemModule">
+    <ng-view></ng-view>
 </div>
