@@ -25,10 +25,10 @@ app.factory("boardResource", ['$http', '$window',
                 return $http.get(url);
             },
 
-            shareBoard: function (boardId, email) {
+            shareBoard: function (boardId, email, userId) {
                 var url = host + '/boards/share';
 
-                return $http.post(url,{email:email,boardId:boardId});
+                return $http.post(url, { email: email, boardId: boardId, userId: userId });
             }
         };
     }

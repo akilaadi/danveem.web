@@ -36,7 +36,7 @@ app.controller('editBoardController', ["$scope", "$window", "$timeout", '$http',
     };
 
     $scope.shareBoard = function () {
-      boardResource.shareBoard($routeParams.id, $scope.shareWithEmail.text).then(function (response) {
+      boardResource.shareBoard($routeParams.id, $scope.shareWithEmail.text,$window.sessionData.userid).then(function (response) {
         console.log(response);
       }).catch(function (error) {
         console.log(error);

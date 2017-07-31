@@ -1,7 +1,7 @@
-app.controller('homeController', ["$scope", "$window", "$timeout", '$http', 'userResource', 'boardResource',
-  function ($scope, $window, $timeout, $http, userResource, boardResource) {
+app.controller('homeController', ["$scope", "$window", "$timeout", '$http', 'userResource', 'boardResource', 'invitationResource',
+  function ($scope, $window, $timeout, $http, userResource, boardResource, invitationResource) {
     $scope.newBoardTitle = {
-      text:null
+      text: null
     };
     $scope.createNewBoard = function (windowApi) {
       windowApi.close();
@@ -16,26 +16,31 @@ app.controller('homeController', ["$scope", "$window", "$timeout", '$http', 'use
     };
 
     userResource.getUser($window.sessionData.userid).then(function (user) {
-      if (user.data.Count === 0) {
+      if (!user.data) {
         userResource.createUser({
           userid: parseInt($window.sessionData.userid),
           name: $window.sessionData.name,
           email: $window.sessionData.email
         }).then(function (response) {
+          invitationResource.importBoardInvitations($window.sessionData.userid).then(function (response) {
+            boardResource.getBoardsForaUser($window.sessionData.userid)
+              .then(function (response) {
+                $scope.allBoards = response.data;
+              });
+          }).catch(function (error) {
+            console.log(error);
+          });
+        });
+      }
+      else {
+        invitationResource.importBoardInvitations($window.sessionData.userid).then(function (response) {
           boardResource.getBoardsForaUser($window.sessionData.userid)
             .then(function (response) {
               $scope.allBoards = response.data;
             });
+        }).catch(function (error) {
+          console.log(error);
         });
-      }
-      else {
-        boardResource.getBoardsForaUser($window.sessionData.userid)
-          .then(function (response) {
-            $scope.allBoards = response.data;
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
       }
     });
   }]);
