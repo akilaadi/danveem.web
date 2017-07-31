@@ -5,16 +5,18 @@ app.controller('homeController', ["$scope", "$window", "$timeout", '$http', 'use
     };
     $scope.createNewBoard = function (windowApi) {
       windowApi.close();
+      $scope.showLoading = true;
       boardResource.createBoard({
         adminUserId: parseInt($window.sessionData.userid),
         title: $scope.newBoardTitle.text
       }).then(function (response) {
         boardResource.getBoardsForaUser($window.sessionData.userid).then(function (response) {
           $scope.allBoards = response.data;
+          $scope.showLoading = false;
         });
       });
     };
-
+    $scope.showLoading = true;
     userResource.getUser($window.sessionData.userid).then(function (user) {
       if (!user.data) {
         userResource.createUser({
@@ -26,6 +28,7 @@ app.controller('homeController', ["$scope", "$window", "$timeout", '$http', 'use
             boardResource.getBoardsForaUser($window.sessionData.userid)
               .then(function (response) {
                 $scope.allBoards = response.data;
+                $scope.showLoading = false;
               });
           }).catch(function (error) {
             console.log(error);
@@ -37,6 +40,7 @@ app.controller('homeController', ["$scope", "$window", "$timeout", '$http', 'use
           boardResource.getBoardsForaUser($window.sessionData.userid)
             .then(function (response) {
               $scope.allBoards = response.data;
+              $scope.showLoading = false;
             });
         }).catch(function (error) {
           console.log(error);

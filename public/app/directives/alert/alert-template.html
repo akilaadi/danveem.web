@@ -1,0 +1,44 @@
+﻿<style type="text/css">
+    .ng-fmsi-alert {
+        width: 100%;
+        padding: 15px;
+        border: 1px solid;
+        border-radius: 4px;
+        opacity: 0;
+    }
+
+        .ng-fmsi-alert a {
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            text-shadow: 0 1px 0 #fff;
+            opacity: 0.4;
+        }
+
+    .success {
+        color: #3c763d;
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+    }
+
+    .error {
+        background-color: #f2dede;
+        border-color: #ebccd1;
+        color: #a94442;
+    }
+
+    .warning {
+        color: #8a6d3b;
+        background-color: #fcf8e3;
+        border-color: #faebcc;
+    }
+
+        .warning a {
+            color: #ab7b1a;
+        }
+</style>
+<div class='ng-fmsi-alert' ng-class='[type,cssClass]' style='display:none;'>
+    <div style='float:left;' ng-transclude></div>
+    <div style='float:right;'><a href='#' ng-click='displayMessage(false, true);'>&#10006;</a></div>
+    <div style='clear:both;'></div>
+</div>

@@ -6,7 +6,7 @@
         </div>
     </div>
     <div style="height:10px;"></div>
-    <div class="row">
+    <div class="row" ng-if="!showLoading">
         <div class="col-md-3" ng-repeat="d in allBoards">
             <div class="thumbnail">
                 <lable>{{d.Title}}</lable>
@@ -17,8 +17,9 @@
                     <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View
                 </a>
             </div>
+        </div>
     </div>
-</div>
+<img src="/images/Loading.gif" style="position:fixed;top:30%;left:50%;margin-left:-100px;" ng-if="showLoading"/>
 <popup-window width='460' height='150' display='displayCreateAnnouncementBoard' display-close="true" popup-title='Create Announcement Board'
     api="createAnnouncementBoardApi">
     <div class="input-group">
@@ -28,4 +29,4 @@
     </div>
     <div style="height:20px;"></div>
     <button style="float:right;margin-right:10px;" type="button" class="btn btn-default" ng-click="createNewBoard(createAnnouncementBoardApi)">Create</button>
-        </popup-window>
+</popup-window>

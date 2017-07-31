@@ -33,5 +33,7 @@
                 <button class="btn btn-default" type="button" ng-click="shareBoard()">Share</button>
             </span>
         </div>
+        <fmsi-alert type="success" set-api="getAlertApi1" css-class="custom-alert" auto-close="true"><strong>This board was successfully shared with {{shareWithEmail.text}}.</strong></fmsi-alert>
+        <fmsi-alert type="error" set-api="getAlertApi2" css-class="custom-alert" auto-close="true"><strong>Error occurred while communicating with the server.</strong></fmsi-alert>
     </div>
 </div>
