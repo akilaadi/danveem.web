@@ -3,6 +3,8 @@ app.controller('homeController', ["$scope", "$window", "$timeout", '$http', 'use
     $scope.newBoardTitle = {
       text: null
     };
+    $scope.window = $window;
+
     $scope.createNewBoard = function (windowApi) {
       windowApi.close();
       $scope.showLoading = true;
